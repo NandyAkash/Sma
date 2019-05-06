@@ -18,16 +18,16 @@ class UserManager(BaseUserManager):
     to create `User` objects.
     """
 
-    def create_user(self, username, role, password= None):
+    def create_user(self, username, roles, password= None):
         """Create and return a `User` with an role, username and password."""
         
         if username is None:
             raise TypeError('Users must have a username.')
 
-        if role is None:
+        if roles is None:
             raise TypeError('Users must have a role.')
 
-        user = self.model(username = username, role = self.model(role = role))
+        user = self.model(username = username, roles = self.model(roles=roles))
         user.set_password(password)
         user.save()
 
